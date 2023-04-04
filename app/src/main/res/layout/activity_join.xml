@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="org.android.go.sopt.util.Constants" />
+        <variable
+            name="vm"
+            type="org.android.go.sopt.ui.join.JoinViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/lo_join"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="30dp"
+        tools:context=".ui.join.JoinActivity">
+
+        <TextView
+            android:id="@+id/tv_sign_title"
+            style="@style/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="SIGNUP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_id_title"
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/tv_id_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sign_title" />
+
+        <EditText
+            android:id="@+id/etv_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/etv_id"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="@{Constants.ID_COUNT_MAX}"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:text="@{vm.id}"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_id_title" />
+
+        <TextView
+            android:id="@+id/tv_pwd_title"
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="@string/tv_pwd_title"
+            app:layout_constraintTop_toBottomOf="@+id/etv_id" />
+
+        <EditText
+            android:id="@+id/etv_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/etv_pwd"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:maxLength="@{Constants.PWD_COUNT_MAX}"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:text="@{vm.pwd}"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pwd_title" />
+
+        <EditText
+            android:id="@+id/etv_pwd_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/etv_pwd"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:maxLength="@{Constants.PWD_COUNT_MAX}"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:text="@{vm.pwdCheck}"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/etv_pwd" />
+
+
+        <TextView
+            android:id="@+id/tv_name_title"
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/etv_pwd_check" />
+
+        <EditText
+            android:id="@+id/etv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/etv_name"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_title" />
+
+        <TextView
+            android:id="@+id/tv_specialty_title"
+            style="@style/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_specialty"
+            app:layout_constraintTop_toBottomOf="@+id/etv_name" />
+
+        <EditText
+            android:id="@+id/etv_specialty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/etv_specialty"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_specialty_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_join"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:enabled="false"
+            android:text="@string/btn_sign"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/etv_specialty" />
+
+        <TextView
+            android:id="@+id/tv_intro_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{vm.sign_Intro_Msg}"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
