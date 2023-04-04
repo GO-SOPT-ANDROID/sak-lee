@@ -36,6 +36,7 @@ object User {
     fun logout() {
         CoroutineScope(Dispatchers.Main).launch {
             isLoggedIn.value = false
+            App.prefs.saveBoolean(false)
             App.prefs.saveUserInfo(null)
             user = null
         }

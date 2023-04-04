@@ -13,6 +13,8 @@ class PreferenceManager(context: Context) {
 
     private fun saveId(id: String?) = prefs.edit().putString(ID, id).apply()
 
+    fun getBoolean(): Boolean = prefs.getBoolean(BOOLEAN, false)
+    fun saveBoolean(boolean: Boolean) = prefs.edit().putBoolean(BOOLEAN, boolean).apply()
     fun getPwd(): String? = prefs.getString(PWD, null)
 
     private fun savePwd(pwd: String?) = prefs.edit().putString(PWD, pwd).apply()
@@ -45,6 +47,7 @@ class PreferenceManager(context: Context) {
 
     private companion object {
         const val PREFS_NAME = "preferences"
+        const val BOOLEAN = "boolean"
         const val ID = "id"
         const val PWD = "pwd"
         const val NAME = "name"

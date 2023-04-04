@@ -39,6 +39,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUser() {
-        if (!App.prefs.getId().isNullOrEmpty()) User.login(App.prefs.getUserInfo())
+        if (App.prefs.getBoolean()) User.login(App.prefs.getUserInfo())
     }
 }

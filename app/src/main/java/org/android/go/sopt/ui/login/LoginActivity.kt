@@ -38,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
             val isLoginSuccessful = checkLogin(binding.etvId.text.toString(), binding.etvPwdCheck.text.toString())
             toast(if (isLoginSuccessful) "로그인 성공." else "로그인 실패")
             if (isLoginSuccessful) {
+                App.prefs.saveBoolean(isLoginSuccessful)
                 User.login(App.prefs.getUserInfo())
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
