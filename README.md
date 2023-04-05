@@ -1,7 +1,8 @@
 ### 리드미는 주로 블로그, 노션 제출 과제의 링크를 첨부하는데 써주시면 됩니다. 그 외엔 자유롭게 이용해주세요 !
 
 ## 과제 링크 제출란
-
+1주차 - LifeCycle,EditText
+https://bitter-latency-758.notion.site/EditText-f990fe703d6342dc81c15f6c6511e26a 
 ## 템플릿 설명
 레포지터리에는 총 2개의 브랜치가 있습니다.
 ### main
