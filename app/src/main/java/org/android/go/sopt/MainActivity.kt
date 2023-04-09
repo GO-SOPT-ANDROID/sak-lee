@@ -1,12 +1,7 @@
 package org.android.go.sopt
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.ui.login.LoginActivity
@@ -39,6 +34,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUser() {
-        if (App.prefs.getBoolean()) User.login(App.prefs.getUserInfo())
+        if (App.prefs.isLogin) User.login(App.prefs.getUserInfo())
     }
 }

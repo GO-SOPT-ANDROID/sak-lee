@@ -23,8 +23,8 @@ object User {
                     UserInfo(
                         id = userInfo.id,
                         pwd = userInfo.pwd,
-                        name = "${userInfo.name}",
-                        specialty = "${userInfo.specialty}"
+                        name = userInfo.name,
+                        specialty = userInfo.specialty
                     )
                 )
                 isLoggedIn.value = true
@@ -36,7 +36,7 @@ object User {
     fun logout() {
         CoroutineScope(Dispatchers.Main).launch {
             isLoggedIn.value = false
-            App.prefs.saveBoolean(false)
+            App.prefs.isLogin = false
             App.prefs.saveUserInfo(null)
             user = null
         }

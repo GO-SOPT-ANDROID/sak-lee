@@ -2,13 +2,14 @@ package org.android.go.sopt.ui.login
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import org.android.go.sopt.App
 import org.android.go.sopt.MainActivity
+import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.ui.join.JoinActivity
 import org.android.go.sopt.util.User
@@ -31,14 +32,15 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initClick() {
         binding.loLogin.setOnClickListener {
-            this@LoginActivity.hideKeyboard()
+            hideKeyboard()
         }
 
         binding.btnLogin.setOnClickListener {
-            val isLoginSuccessful = checkLogin(binding.etvId.text.toString(), binding.etvPwdCheck.text.toString())
-            toast(if (isLoginSuccessful) "로그인 성공." else "로그인 실패")
+            val isLoginSuccessful =
+                checkLogin(binding.etvId.text.toString(), binding.etvPwdCheck.text.toString())
+            toast(if (isLoginSuccessful) getString(R.string.login_success) else getString(R.string.login_fail))
             if (isLoginSuccessful) {
-                App.prefs.saveBoolean(isLoginSuccessful)
+                App.prefs.isLogin=isLoginSuccessful
                 User.login(App.prefs.getUserInfo())
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -51,7 +53,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkLogin(etvId:String, etvPwd:String) = etvId==App.prefs.getId() && etvPwd==App.prefs.getPwd()
+    private fun checkLogin(etvId: String, etvPwd: String) =
+        etvId == App.prefs.id && etvPwd == App.prefs.pwd
 
     private fun setResultSignUp() {
         activityResultLauncher =
@@ -60,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
                     it.data?.run {
                         binding.etvId.setText(getStringExtra("id"))
                         binding.etvPwdCheck.setText(getStringExtra("password"))
-                        makeSnackBar("회원가입 완료")
+                        makeSnackBar(getString(R.string.join_success))
                     }
                 }
             }

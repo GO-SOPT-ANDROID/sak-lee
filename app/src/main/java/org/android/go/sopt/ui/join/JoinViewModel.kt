@@ -1,17 +1,8 @@
 package org.android.go.sopt.ui.join
 
-import android.content.Context
-import android.content.Intent
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.android.go.sopt.App
-import org.android.go.sopt.MainActivity
 import org.android.go.sopt.util.Constants.ID_COUNT_MAX
 import org.android.go.sopt.util.Constants.ID_COUNT_MIN
 import org.android.go.sopt.util.Constants.ID_REGEX_MSG
@@ -21,8 +12,6 @@ import org.android.go.sopt.util.Constants.PWD_CHECK
 import org.android.go.sopt.util.Constants.PWD_COUNT_MAX
 import org.android.go.sopt.util.Constants.PWD_COUNT_MIN
 import org.android.go.sopt.util.Constants.PWD_REGEX_MSG
-import org.android.go.sopt.util.User
-import org.android.go.sopt.util.toast
 
 class JoinViewModel : ViewModel() {
     /**
