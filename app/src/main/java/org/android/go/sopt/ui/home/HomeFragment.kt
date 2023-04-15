@@ -1,7 +1,6 @@
 package org.android.go.sopt.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +33,10 @@ class HomeFragment : Fragment() {
         val fakeGithubAssetLoader = asserLoader.getJsonString("fake_repo_list.json")
         val gson = Gson()
         val fakeGithubAsset = gson.fromJson(fakeGithubAssetLoader, FakeGithubInfo::class.java)
-        Log.d("fake",fakeGithubAsset.toString())
+
+        binding.rvFakeGithubInfo.adapter = HomeAdapter().apply {
+            submitList(fakeGithubAsset)
+        }
 
     }
 }
