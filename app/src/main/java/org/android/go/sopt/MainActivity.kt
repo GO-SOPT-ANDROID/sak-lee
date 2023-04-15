@@ -16,17 +16,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navigationFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
-        val navController = navigationFragment.navController
+        val navController = (supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment).navController
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
-        binding.bottomNavigation.setOnItemReselectedListener { }
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.navigation_home || destination.id == R.id.navigation_gallery || destination.id == R.id.navigation_search)
-                binding.bottomNavigation.visibility = View.VISIBLE
-            else
-                binding.bottomNavigation.visibility = View.GONE
+            binding.bottomNavigation.visibility = if (destination.id in listOf(R.id.navigation_home, R.id.navigation_gallery, R.id.navigation_search)) View.VISIBLE else View.GONE
         }
+
+        binding.bottomNavigation.setOnItemReselectedListener { }
     }
 
 }

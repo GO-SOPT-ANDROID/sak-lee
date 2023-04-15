@@ -58,4 +58,6 @@ dependencies {
     //paging
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
 
+    implementation 'com.google.code.gson:gson:2.10.1'
+
 }
