@@ -1,18 +1,11 @@
 package org.android.go.sopt
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import org.android.go.sopt.databinding.ActivityMainBinding
-import org.android.go.sopt.ui.login.LoginActivity
-import org.android.go.sopt.ui.mypage.MyPageActivity
-import org.android.go.sopt.util.User
-import org.android.go.sopt.util.User.isLoggedIn
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,23 +15,18 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setUser()
-        initClick()
-    }
 
-    private fun initClick() {
-        binding.tv1.setOnClickListener {
-            if (isLoggedIn.value == true)
-                startActivity(Intent(this, MyPageActivity::class.java))
+        val navigationFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navController = navigationFragment.navController
+        NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
+        binding.bottomNavigation.setOnItemReselectedListener { }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.navigation_home || destination.id == R.id.navigation_gallery || destination.id == R.id.navigation_search)
+                binding.bottomNavigation.visibility = View.VISIBLE
             else
-                startActivity(Intent(this, LoginActivity::class.java))
-        }
-        binding.tv2.setOnClickListener {
-            User.logout()
+                binding.bottomNavigation.visibility = View.GONE
         }
     }
 
-    private fun setUser() {
-        if (App.prefs.getBoolean()) User.login(App.prefs.getUserInfo())
-    }
 }
