@@ -1,6 +1,9 @@
 package org.android.go.sopt.model
 
+import com.google.gson.annotations.SerializedName
+
 data class FakeGithubInfoItem(
+    @SerializedName("title") val title: String,
     val allow_forking: Boolean,
     val archive_url: String,
     val archived: Boolean,
@@ -25,7 +28,7 @@ data class FakeGithubInfoItem(
     val forks: Int,
     val forks_count: Int,
     val forks_url: String,
-    val full_name: String,
+    @SerializedName("full_name") val full_name: String,
     val git_commits_url: String,
     val git_refs_url: String,
     val git_tags_url: String,
@@ -52,7 +55,7 @@ data class FakeGithubInfoItem(
     val merges_url: String,
     val milestones_url: String,
     val mirror_url: Any,
-    val name: String,
+    @SerializedName("name") val name: String,
     val node_id: String,
     val notifications_url: String,
     val open_issues: Int,
