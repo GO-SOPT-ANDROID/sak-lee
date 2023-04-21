@@ -31,7 +31,6 @@ class HomeAdapter() :
             else -> VIEW_TYPE_ITEM
         }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
             VIEW_TYPE_TITLE -> TitleViewHolder(
@@ -50,6 +49,7 @@ class HomeAdapter() :
             is TitleViewHolder -> holder.bind(content)
         }
     }
+
 
     fun setSelectionTracker(selectionTracker: SelectionTracker<Long>) {
         this.selectionTracker = selectionTracker
@@ -78,9 +78,11 @@ class HomeAdapter() :
             root.setOnClickListener {
                 selectionTracker?.select(itemPosition.toLong())
             }
+
             loRvitem.isActivated = selectionTracker?.isSelected(itemPosition.toLong()) ?: false
             executePendingBindings()
         }
+
         fun getItemDetails(): ItemDetailsLookup.ItemDetails<Long> =
             object : ItemDetailsLookup.ItemDetails<Long>() {
                 override fun getPosition(): Int = adapterPosition
@@ -103,8 +105,15 @@ class HomeAdapter() :
 }
 
 class FakeGithubDiffCallback : DiffUtil.ItemCallback<FakeGithubInfoItem>() {
-    override fun areItemsTheSame(oldItem: FakeGithubInfoItem, newItem: FakeGithubInfoItem): Boolean =
+    override fun areItemsTheSame(
+        oldItem: FakeGithubInfoItem,
+        newItem: FakeGithubInfoItem
+    ): Boolean =
         oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: FakeGithubInfoItem, newItem: FakeGithubInfoItem): Boolean =
+
+    override fun areContentsTheSame(
+        oldItem: FakeGithubInfoItem,
+        newItem: FakeGithubInfoItem
+    ): Boolean =
         oldItem == newItem
 }

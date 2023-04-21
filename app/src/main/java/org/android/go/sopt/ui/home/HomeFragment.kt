@@ -1,6 +1,7 @@
 package org.android.go.sopt.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +18,8 @@ import org.android.go.sopt.model.FakeGithubInfo
 import org.android.go.sopt.util.AssetLoader
 
 class HomeFragment : Fragment() {
-
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private val adapter = HomeAdapter()
 
     /**
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
                 StableIdKeyProvider(rvFakeGithubInfo),//ItemKeyProvider 라이브러리에서 제공.커스텀 필요하는 경우 있음
                 HomeAdapter.HomeLookUp(rvFakeGithubInfo), //  RecyclerView 아이템의 대한 정보
                 StorageStrategy.createLongStorage()//선택항목 저장 전략 라이브러리 제공
-                )
+            )
                 .withSelectionPredicate(SelectionPredicates.createSelectAnything())
                 .build()
         }
@@ -47,16 +48,17 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding =
+        _binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val fakeGithubAsset = loadFakeGithubInfo()
+
         initAdapter(fakeGithubAsset)
+
     }
 
     private fun loadFakeGithubInfo(): FakeGithubInfo? {
@@ -69,14 +71,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun initAdapter(fakeGithubAsset: FakeGithubInfo?) {
-
         binding.rvFakeGithubInfo.adapter = adapter.apply {
             submitList(fakeGithubAsset)
         }
-
         adapter.setSelectionTracker(selectionTracker)
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
 }
 

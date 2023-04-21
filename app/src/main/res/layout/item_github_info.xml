@@ -8,8 +8,7 @@
                 name="fakeinfo"
                 type="org.android.go.sopt.model.FakeGithubInfoItem" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lo_rvitem"
         android:background="@drawable/rv_selector"
         android:layout_width="match_parent"
@@ -63,4 +62,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

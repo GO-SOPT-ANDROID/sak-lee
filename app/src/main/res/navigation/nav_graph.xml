@@ -5,19 +5,19 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/navigation_home">
 
-    <keep_state_fragment
+    <fragment
         android:id="@+id/navigation_home"
         android:name="org.android.go.sopt.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
-    <keep_state_fragment
+    <fragment
         android:id="@+id/navigation_gallery"
         android:name="org.android.go.sopt.ui.gallery.GalleryFragment"
         android:label="fragment_gallery"
         tools:layout="@layout/fragment_gallery" />
 
-    <keep_state_fragment
+    <fragment
         android:id="@+id/navigation_search"
         android:name="org.android.go.sopt.ui.search.SearchFragment"
         android:label="fragment_search"
