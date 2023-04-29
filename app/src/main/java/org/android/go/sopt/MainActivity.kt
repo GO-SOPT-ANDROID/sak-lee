@@ -1,13 +1,12 @@
 package org.android.go.sopt
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import org.android.go.sopt.databinding.ActivityMainBinding
-import org.android.go.sopt.ui.login.LoginActivity
-import org.android.go.sopt.ui.mypage.MyPageActivity
-import org.android.go.sopt.util.User
-import org.android.go.sopt.util.User.isLoggedIn
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,23 +16,41 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setUser()
-        initClick()
+
+        val navController = setupNavigation()
+        setBottomVisible(navController)
+
     }
 
-    private fun initClick() {
-        binding.tv1.setOnClickListener {
-            if (isLoggedIn.value == true)
-                startActivity(Intent(this, MyPageActivity::class.java))
-            else
-                startActivity(Intent(this, LoginActivity::class.java))
+    private fun setupNavigation(): NavController {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navController = navHostFragment.navController
+//        val navigator =
+//            KeepStateNavigator(this, navHostFragment.childFragmentManager, R.id.fragment_container)
+//        navController.navigatorProvider.addNavigator(navigator)
+//        navController.setGraph(R.navigation.nav_graph)
+        NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
+
+        binding.bottomNavigation.setOnItemReselectedListener {
+            if (it.itemId == R.id.navigation_home) navController.navigate(it.itemId)
         }
-        binding.tv2.setOnClickListener {
-            User.logout()
+
+        return navController
+    }
+
+
+    private fun setBottomVisible(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.bottomNavigation.visibility = if (destination.id in listOf(
+                    R.id.navigation_home,
+                    R.id.navigation_gallery,
+                    R.id.navigation_search
+                )
+            ) View.VISIBLE else View.GONE
         }
     }
 
-    private fun setUser() {
-        if (App.prefs.isLogin) User.login(App.prefs.getUserInfo())
-    }
+
 }
+
