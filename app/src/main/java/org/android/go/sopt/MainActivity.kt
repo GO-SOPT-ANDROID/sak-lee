@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         return navController
     }
 
+
     private fun setBottomVisible(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.bottomNavigation.visibility = if (destination.id in listOf(
