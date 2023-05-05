@@ -22,4 +22,10 @@
         android:name="org.android.go.sopt.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_my_page"
+        android:name="org.android.go.sopt.ui.mypage.MyPageFragment"
+        android:label="MyPageFragment"
+        tools:layout="@layout/fragment_mypage"/>
 </navigation>

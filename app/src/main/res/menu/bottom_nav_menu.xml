@@ -12,4 +12,8 @@
         android:id="@+id/navigation_search"
         android:icon="@drawable/ic_search"
         android:title="@string/search" />
+    <item
+        android:id="@+id/navigation_my_page"
+        android:icon="@drawable/baseline_child_care_24"
+        android:title="@string/my_page" />
 </menu>

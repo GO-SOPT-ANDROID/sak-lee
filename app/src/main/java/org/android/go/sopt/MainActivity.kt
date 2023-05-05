@@ -26,10 +26,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
-//        val navigator =
-//            KeepStateNavigator(this, navHostFragment.childFragmentManager, R.id.fragment_container)
-//        navController.navigatorProvider.addNavigator(navigator)
-//        navController.setGraph(R.navigation.nav_graph)
+
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
 
         binding.bottomNavigation.setOnItemReselectedListener {
@@ -45,7 +42,8 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigation.visibility = if (destination.id in listOf(
                     R.id.navigation_home,
                     R.id.navigation_gallery,
-                    R.id.navigation_search
+                    R.id.navigation_search,
+                    R.id.navigation_my_page
                 )
             ) View.VISIBLE else View.GONE
         }
