@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import org.android.go.sopt.databinding.ActivityMainBinding
+import org.android.go.sopt.util.User
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val navController = setupNavigation()
         setBottomVisible(navController)
 
+        setUser()
     }
 
     private fun setupNavigation(): NavController {
@@ -36,7 +38,9 @@ class MainActivity : AppCompatActivity() {
         return navController
     }
 
-
+    private fun setUser() {
+        if (App.prefs.isLogin) User.login(App.prefs.getUserInfo())
+    }
     private fun setBottomVisible(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.bottomNavigation.visibility = if (destination.id in listOf(

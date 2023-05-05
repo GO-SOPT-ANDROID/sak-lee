@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -55,13 +57,10 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
-    //paging
-    implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
-
     implementation 'com.google.code.gson:gson:2.10.1'
-
     implementation 'androidx.recyclerview:recyclerview-selection:1.0.0'
-
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
 
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
 }
