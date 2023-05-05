@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/tv_login_title"
-        style="@style/title"
+        style="@style/TextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -20,16 +20,17 @@
 
     <TextView
         android:id="@+id/tv_id_title"
-        style="@style/title"
+        android:textAppearance="?textAppearanceDisplayLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        style="@style/TextTitle"
         android:text="@string/tv_id_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_login_title" />
 
     <EditText
         android:id="@+id/etv_id"
-        style="@style/edit.base"
+        style="@style/EditText.base"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/etv_id"
@@ -38,7 +39,7 @@
 
     <TextView
         android:id="@+id/tv_pwd_title"
-        style="@style/title"
+        style="@style/TextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -47,7 +48,7 @@
 
     <EditText
         android:id="@+id/etv_pwd_check"
-        style="@style/edit.pwd"
+        style="@style/EditText.pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/etv_pwd"
