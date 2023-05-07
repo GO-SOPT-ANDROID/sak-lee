@@ -13,6 +13,8 @@ data class ResponseSignUpDto(
 ){
     @Serializable
     data class SignUpData(
+        @SerialName("id")
+        val id: String,
         @SerialName("name")
         val name: String,
         @SerialName("skill")
