@@ -44,7 +44,7 @@ class MyPageFragment : Fragment() {
     }
 
     private fun setUser() {
-        if (viewModel.isLogin.value == true) binding.user = User.user!!.value
+        if (viewModel.isLogin.value == true) binding.user = User.user?.value
         else startLoginActivity()
     }
 

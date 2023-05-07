@@ -9,18 +9,20 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.databinding.DialogAlertBinding
+import org.android.go.sopt.databinding.FragmentMypageBinding
 
 
 class LogoutDialog() : DialogFragment() {
     private val viewModel: MyPageViewModel by viewModels()
-    private lateinit var binding: DialogAlertBinding
+    private var _binding: DialogAlertBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DialogAlertBinding.inflate(inflater, container, false)
+        _binding = DialogAlertBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,5 +46,11 @@ class LogoutDialog() : DialogFragment() {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(this)
         }
+    }
+
+    override fun onDestroy() {
+        _binding=null
+        super.onDestroy()
+
     }
 }
