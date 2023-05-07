@@ -5,22 +5,26 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.App
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
+import org.android.go.sopt.model.RequestSignInDto
 import org.android.go.sopt.ui.join.JoinActivity
+import org.android.go.sopt.ui.join.JoinViewModel
 import org.android.go.sopt.util.User
 import org.android.go.sopt.util.hideKeyboard
 import org.android.go.sopt.util.toast
-
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
-
+    private val viewModel by viewModels<JoinViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
+            viewModel.signIn(RequestSignInDto(binding.etvId.text.toString(), binding.etvPwdCheck.text.toString()))
             val isLoginSuccessful =
                 checkLogin(binding.etvId.text.toString(), binding.etvPwdCheck.text.toString())
             toast(if (isLoginSuccessful) getString(R.string.login_success) else getString(R.string.login_fail))
