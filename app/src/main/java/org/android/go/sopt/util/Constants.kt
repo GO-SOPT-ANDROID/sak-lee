@@ -15,3 +15,9 @@ object Constants {
     const val ID_REGEX = ""
     const val PW_REGEX = ""
 }
+
+object API {
+    const val BASE_URL = "52.78.152.187:8080"
+    const val SIGN_IN = "sign-in"
+    const val SIGN_UP = "sign-up"
+}
