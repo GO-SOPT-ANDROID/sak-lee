@@ -18,7 +18,7 @@ object Constants {
 
 object API {
     const val API_TAG = "Retrofit2"
-    const val BASE_URL = "52.78.152.187:8080"
+    const val BASE_URL = "http://52.78.152.187:8080"
     const val SIGN_IN = "sign-in"
     const val SIGN_UP = "sign-up"
 }
