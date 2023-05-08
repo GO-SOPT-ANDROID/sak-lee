@@ -5,29 +5,29 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StableIdKeyProvider
 import androidx.recyclerview.selection.StorageStrategy
 import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentHomeBinding
-import org.android.go.sopt.model.FakeGithubInfo
+import org.android.go.sopt.data.model.FakeGithubInfo
+import org.android.go.sopt.ui.join.JoinViewModel
 import org.android.go.sopt.util.AssetLoader
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
+    private val viewModel by viewModels<HomeViewModel>()
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val adapter = HomeAdapter()
 
-    /**
-     *아이템 선택 상태 추적
-     * 현재 선택 내용 검사
-     * 임시 선택 모두가 지워지는 문제 해결
-     * Recyclerview와 사용
-     */
+    private val adapter = HomeAdapter()
 
     private val selectionTracker by lazy {
         with(binding) {
@@ -62,11 +62,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadFakeGithubInfo(): FakeGithubInfo? {
-
         val asserLoader = AssetLoader(requireContext())
         val fakeGithubAssetLoader = asserLoader.getJsonString("fake_repo_list.json")
         val gson = Gson()
-
+        viewModel.getUserList()
         return gson.fromJson(fakeGithubAssetLoader, FakeGithubInfo::class.java)
     }
 
