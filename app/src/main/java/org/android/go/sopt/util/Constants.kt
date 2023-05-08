@@ -1,5 +1,7 @@
 package org.android.go.sopt.util
 
+import org.android.go.sopt.BuildConfig
+
 object Constants {
 
     const val ID_COUNT_MIN = 6
@@ -18,7 +20,7 @@ object Constants {
 
 object API {
     const val API_TAG = "Retrofit2"
-    const val BASE_URL = "http://52.78.152.187:8080"
+    const val BASE_URL = BuildConfig.AUTH_BASE_URL
     const val SIGN_IN = "sign-in"
     const val SIGN_UP = "sign-up"
 }

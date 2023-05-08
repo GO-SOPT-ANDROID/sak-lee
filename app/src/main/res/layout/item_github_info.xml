@@ -6,7 +6,7 @@
     <data>
             <variable
                 name="fakeinfo"
-                type="org.android.go.sopt.model.FakeGithubInfoItem" />
+                type="org.android.go.sopt.data.model.FakeGithubInfoItem" />
     </data>
      <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lo_rvitem"

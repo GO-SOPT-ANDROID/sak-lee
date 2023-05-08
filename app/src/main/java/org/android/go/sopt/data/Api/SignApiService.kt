@@ -1,8 +1,8 @@
-package org.android.go.sopt.model.Api
+package org.android.go.sopt.data.Api
 
-import org.android.go.sopt.model.RequestSignInDto
-import org.android.go.sopt.model.RequestSignUpDto
-import org.android.go.sopt.model.ResponseSignUpDto
+import org.android.go.sopt.data.model.RequestSignInDto
+import org.android.go.sopt.data.model.RequestSignUpDto
+import org.android.go.sopt.data.model.ResponseSignUpDto
 import org.android.go.sopt.util.API.SIGN_IN
 import org.android.go.sopt.util.API.SIGN_UP
 import retrofit2.Response

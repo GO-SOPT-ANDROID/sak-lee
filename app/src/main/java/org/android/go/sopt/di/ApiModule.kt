@@ -4,7 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.android.go.sopt.model.Api.SignApiService
+import org.android.go.sopt.data.Api.HomeApiService
+import org.android.go.sopt.data.Api.SignApiService
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -15,4 +16,8 @@ object ApiModule {
     @Singleton
     fun provideSignApiService(retrofit: Retrofit): SignApiService = retrofit.create(SignApiService::class.java)
 
+
+    @Provides
+    @Singleton
+    fun provideHomeApiService(retrofit: Retrofit): HomeApiService = retrofit.create(HomeApiService::class.java)
 }

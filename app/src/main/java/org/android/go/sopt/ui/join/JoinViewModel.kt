@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.android.go.sopt.domain.SignRepository
-import org.android.go.sopt.model.RequestSignInDto
-import org.android.go.sopt.model.RequestSignUpDto
+import org.android.go.sopt.data.model.RequestSignInDto
+import org.android.go.sopt.data.model.RequestSignUpDto
 import org.android.go.sopt.util.Constants.ID_COUNT_MAX
 import org.android.go.sopt.util.Constants.ID_COUNT_MIN
 import org.android.go.sopt.util.Constants.ID_REGEX_MSG

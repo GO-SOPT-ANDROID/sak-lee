@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.databinding.ActivityMainBinding
 import org.android.go.sopt.util.User
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.android.go.sopt.App
-import org.android.go.sopt.model.UserInfo
+import org.android.go.sopt.data.model.UserInfo
 
 object User {
 

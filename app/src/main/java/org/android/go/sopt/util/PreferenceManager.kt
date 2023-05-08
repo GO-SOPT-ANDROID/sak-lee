@@ -3,7 +3,7 @@ package org.android.go.sopt.util
 import android.content.Context
 import androidx.core.content.edit
 import org.android.go.sopt.App
-import org.android.go.sopt.model.UserInfo
+import org.android.go.sopt.data.model.UserInfo
 
 
 class PreferenceManager(context: Context) {

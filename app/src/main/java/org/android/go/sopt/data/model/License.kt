@@ -1,4 +1,4 @@
-package org.android.go.sopt.model
+package org.android.go.sopt.data.model
 
 data class License(
     val key: String,

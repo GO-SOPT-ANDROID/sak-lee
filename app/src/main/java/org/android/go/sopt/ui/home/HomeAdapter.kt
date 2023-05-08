@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.databinding.ItemGithubInfoBinding
 import org.android.go.sopt.databinding.ItemTextBinding
-import org.android.go.sopt.model.FakeGithubInfoItem
+import org.android.go.sopt.data.model.FakeGithubInfoItem
 
 class HomeAdapter() :
     ListAdapter<FakeGithubInfoItem, RecyclerView.ViewHolder>(

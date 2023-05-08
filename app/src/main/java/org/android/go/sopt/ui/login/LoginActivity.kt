@@ -13,7 +13,7 @@ import org.android.go.sopt.App
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
-import org.android.go.sopt.model.RequestSignInDto
+import org.android.go.sopt.data.model.RequestSignInDto
 import org.android.go.sopt.ui.join.JoinActivity
 import org.android.go.sopt.ui.join.JoinViewModel
 import org.android.go.sopt.util.User

@@ -7,7 +7,7 @@
 
         <variable
             name="user"
-            type="org.android.go.sopt.model.UserInfo" />
+            type="org.android.go.sopt.data.model.UserInfo" />
 
     </data>
 

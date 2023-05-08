@@ -49,7 +49,8 @@ object RetrofitModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
-        .baseUrl(BASE_URL)
+//        .baseUrl(BASE_URL)
+        .baseUrl("https://reqres.in/")
         .client(okHttpClient)
         .build()
 
