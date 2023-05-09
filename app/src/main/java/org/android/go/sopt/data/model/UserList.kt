@@ -4,8 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserList(
-
-    @SerialName("data")val data: List<Data>,
+    @SerialName("data")val data: List<ResponseUserInfo>,
     @SerialName("page")  val page: Int,
     @SerialName("per_page") val per_page: Int,
     @SerialName("support")  val support: Support,
