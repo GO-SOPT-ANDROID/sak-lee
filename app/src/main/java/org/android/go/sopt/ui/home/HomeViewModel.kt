@@ -1,19 +1,15 @@
 package org.android.go.sopt.ui.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
-import org.android.go.sopt.data.model.RequestSignInDto
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
+import org.android.go.sopt.data.model.ResponseUserInfo
 import org.android.go.sopt.domain.HomeRepository
-import org.android.go.sopt.domain.SignRepository
 import javax.inject.Inject
 
 @dagger.hilt.android.lifecycle.HiltViewModel
 class HomeViewModel  @Inject constructor(
     private val apiRepository: HomeRepository
 ) : ViewModel() {
-    fun getUserList() = viewModelScope.launch {
-        val response = apiRepository.getUserList()
-    }
+    fun getUserList(): Flow<PagingData<ResponseUserInfo>> = apiRepository.getUserList()
 }

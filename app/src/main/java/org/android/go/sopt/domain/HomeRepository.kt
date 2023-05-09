@@ -1,8 +1,9 @@
 package org.android.go.sopt.domain
 
-import org.android.go.sopt.data.model.UserList
-import retrofit2.Response
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
+import org.android.go.sopt.data.model.ResponseUserInfo
 
 interface HomeRepository {
-    suspend fun getUserList(): Response<UserList>
+    fun getUserList(): Flow<PagingData<ResponseUserInfo>>
 }
