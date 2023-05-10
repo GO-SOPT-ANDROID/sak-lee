@@ -10,14 +10,13 @@ import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityJoinBinding
 import org.android.go.sopt.model.UserInfo
 import org.android.go.sopt.util.Constants.INPUT_SUCCESS
-import org.android.go.sopt.util.ViewModelFactory
 import org.android.go.sopt.util.afterTextChanged
 import org.android.go.sopt.util.hideKeyboard
 
 class JoinActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityJoinBinding
-    private val viewModel: JoinViewModel by viewModels { ViewModelFactory(this) }
+    private val viewModel: JoinViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import org.android.go.sopt.databinding.ActivityMainBinding
+import org.android.go.sopt.util.User
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,16 +21,14 @@ class MainActivity : AppCompatActivity() {
         val navController = setupNavigation()
         setBottomVisible(navController)
 
+        setUser()
     }
 
     private fun setupNavigation(): NavController {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
-//        val navigator =
-//            KeepStateNavigator(this, navHostFragment.childFragmentManager, R.id.fragment_container)
-//        navController.navigatorProvider.addNavigator(navigator)
-//        navController.setGraph(R.navigation.nav_graph)
+
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
 
         binding.bottomNavigation.setOnItemReselectedListener {
@@ -39,13 +38,16 @@ class MainActivity : AppCompatActivity() {
         return navController
     }
 
-
+    private fun setUser() {
+        if (App.prefs.isLogin) User.login(App.prefs.getUserInfo())
+    }
     private fun setBottomVisible(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.bottomNavigation.visibility = if (destination.id in listOf(
                     R.id.navigation_home,
                     R.id.navigation_gallery,
-                    R.id.navigation_search
+                    R.id.navigation_search,
+                    R.id.navigation_my_page
                 )
             ) View.VISIBLE else View.GONE
         }

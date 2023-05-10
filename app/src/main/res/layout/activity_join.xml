@@ -41,7 +41,7 @@
 
                 <TextView
                     android:id="@+id/tv_sign_title"
-                    style="@style/title"
+                    style="@style/TextTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -51,7 +51,7 @@
 
                 <TextView
                     android:id="@+id/tv_id_title"
-                    style="@style/title"
+                    style="@style/TextTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
@@ -60,7 +60,7 @@
 
                 <EditText
                     android:id="@+id/etv_id"
-                    style="@style/edit.base"
+                    style="@style/EditText.base"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/etv_id"
@@ -71,7 +71,7 @@
 
                 <TextView
                     android:id="@+id/tv_pwd_title"
-                    style="@style/title"
+                    style="@style/TextTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_pwd_title"
@@ -79,7 +79,7 @@
 
                 <EditText
                     android:id="@+id/etv_pwd"
-                    style="@style/edit.pwd"
+                    style="@style/EditText.pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/etv_pwd"
@@ -90,7 +90,7 @@
 
                 <EditText
                     android:id="@+id/etv_pwd_check"
-                    style="@style/edit.pwd"
+                    style="@style/EditText.pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/etv_pwd"
@@ -101,7 +101,7 @@
 
                 <TextView
                     android:id="@+id/tv_name_title"
-                    style="@style/title"
+                    style="@style/TextTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_name"
@@ -109,7 +109,7 @@
 
                 <EditText
                     android:id="@+id/etv_name"
-                    style="@style/edit.base"
+                    style="@style/EditText.base"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/etv_name"
@@ -118,7 +118,7 @@
 
                 <TextView
                     android:id="@+id/tv_specialty_title"
-                    style="@style/title"
+                    style="@style/TextTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_specialty"
@@ -126,7 +126,7 @@
 
                 <EditText
                     android:id="@+id/etv_specialty"
-                    style="@style/edit.base"
+                    style="@style/EditText.base"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/etv_specialty"
