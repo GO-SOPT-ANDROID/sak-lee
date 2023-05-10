@@ -5,12 +5,14 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import org.android.go.sopt.data.model.home.ResponseUserInfo
 import org.android.go.sopt.data.model.kakao.KaKaoImage
 import org.android.go.sopt.databinding.ItemKakaoImageBinding
+import org.android.go.sopt.util.DiffCallback
 
 class SearchPagingAdapter(
 ) : PagingDataAdapter<KaKaoImage, SearchPagingAdapter.PagingViewHolder>(
-    KaKaoDiffCallback()
+    KaKaoDiffCallback
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagingViewHolder {
@@ -32,15 +34,9 @@ class SearchPagingAdapter(
         }
     }
 
+    companion object {
+        private val KaKaoDiffCallback =
+            DiffCallback<KaKaoImage>(id = { old, new -> old.collection == new.collection })
+    }
 }
 
-class KaKaoDiffCallback : DiffUtil.ItemCallback<KaKaoImage>() {
-    override fun areItemsTheSame(oldItem: KaKaoImage, newItem: KaKaoImage): Boolean {
-        return oldItem.collection == newItem.collection
-    }
-
-    override fun areContentsTheSame(oldItem: KaKaoImage, newItem: KaKaoImage): Boolean {
-        return oldItem == newItem
-    }
-
-}
