@@ -8,18 +8,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import org.android.go.sopt.R
-import org.android.go.sopt.data.model.kakao.KaKaoImage
 import org.android.go.sopt.databinding.FragmentSearchBinding
 import org.android.go.sopt.util.hideKeyboard
+import org.android.go.sopt.util.pagingSubmitData
 
 
 @AndroidEntryPoint
@@ -55,22 +48,8 @@ class SearchFragment : Fragment() {
 
     private fun initAdapter(query: String) {
         binding.rvKakaoSearchResult.adapter = adapter.apply {
-            productSubmitData(adapter, viewModel.getKaKaoResult(query))
+            pagingSubmitData(viewLifecycleOwner, viewModel.getKaKaoResult(query), adapter)
         }
     }
 
-    private fun productSubmitData(
-        pagingAdapter: SearchPagingAdapter,
-        getData: Flow<PagingData<KaKaoImage>>
-    ) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    getData.collectLatest { pagingData ->
-                        pagingAdapter.submitData(pagingData)
-                    }
-                }
-            }
-        }
-    }
 }

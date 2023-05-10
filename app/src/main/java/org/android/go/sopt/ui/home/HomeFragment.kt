@@ -7,17 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import org.android.go.sopt.R
-import org.android.go.sopt.data.model.home.ResponseUserInfo
 import org.android.go.sopt.databinding.FragmentHomeBinding
+import org.android.go.sopt.util.pagingSubmitData
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -46,22 +39,7 @@ class HomeFragment : Fragment() {
 
     private fun initAdapter() {
         binding.rvFakeGithubInfo.adapter = adapter.apply {
-            productSubmitData(adapter, viewModel.getUserList())
-        }
-    }
-
-    private fun productSubmitData(
-        pagingAdapter: HomePagingAdapter,
-        getData: Flow<PagingData<ResponseUserInfo>>
-    ) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    getData.collectLatest { pagingData ->
-                        pagingAdapter.submitData(pagingData)
-                    }
-                }
-            }
+            pagingSubmitData(viewLifecycleOwner, viewModel.getUserList(), adapter)
         }
     }
 
