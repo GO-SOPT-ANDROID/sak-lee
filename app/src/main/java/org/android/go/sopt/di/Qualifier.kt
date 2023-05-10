@@ -9,3 +9,7 @@ annotation class SoptRetrofit
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class ReqresRetrofit
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class KaKaoRetrofit
