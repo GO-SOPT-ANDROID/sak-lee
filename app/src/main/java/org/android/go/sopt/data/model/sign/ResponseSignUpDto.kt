@@ -1,4 +1,4 @@
-package org.android.go.sopt.data.model
+package org.android.go.sopt.data.model.sign
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,7 +9,7 @@ data class ResponseSignUpDto(
     @SerialName("message")
     val message: String,
     @SerialName("data")
-    val data: SignUpData
+    val data: SignUpData? = null
 ){
     @Serializable
     data class SignUpData(
