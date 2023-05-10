@@ -2,13 +2,14 @@ package org.android.go.sopt.data.Api
 
 
 import org.android.go.sopt.data.model.home.UserList
+import org.android.go.sopt.util.API.HOME_USER
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface HomeApiService {
 
-    @GET("api/users")
+    @GET(HOME_USER)
     suspend fun getMainPage(
         @Query("page") page: Int,
     ): Response<UserList>
