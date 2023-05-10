@@ -13,6 +13,7 @@ interface SignApiService {
 
     @POST(SIGN_UP)
     suspend fun singUp(@Body requestSignUpDto: RequestSignUpDto): Response<ResponseSignUpDto>
+
     @POST(SIGN_IN)
     suspend fun singIn(@Body requestSignUpDto: RequestSignInDto): Response<ResponseSignUpDto>
 }

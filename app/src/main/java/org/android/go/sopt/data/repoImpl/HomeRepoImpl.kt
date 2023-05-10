@@ -13,8 +13,8 @@ import javax.inject.Inject
 class HomeRepoImpl @Inject constructor(
     private val apiService: HomeApiService
 ) : HomeRepository {
-    override  fun getUserList(): Flow<PagingData<ResponseUserInfo>> =
-        Pager(PagingConfig(10)){
+    override fun getUserList(): Flow<PagingData<ResponseUserInfo>> =
+        Pager(PagingConfig(10)) {
             UserPagingSource(apiService)
         }.flow
 }

@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import org.android.go.sopt.data.Api.HomeApiService
 import org.android.go.sopt.data.model.home.ResponseUserInfo
 
-class UserPagingSource (
+class UserPagingSource(
     private val apiService: HomeApiService,
 ) : PagingSource<Int, ResponseUserInfo>() {
 

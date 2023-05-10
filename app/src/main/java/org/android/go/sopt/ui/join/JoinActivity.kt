@@ -8,9 +8,9 @@ import androidx.databinding.DataBindingUtil
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.App
 import org.android.go.sopt.R
-import org.android.go.sopt.databinding.ActivityJoinBinding
-import org.android.go.sopt.data.model.sign.RequestSignUpDto
 import org.android.go.sopt.data.model.UserInfo
+import org.android.go.sopt.data.model.sign.RequestSignUpDto
+import org.android.go.sopt.databinding.ActivityJoinBinding
 import org.android.go.sopt.util.Constants.INPUT_SUCCESS
 import org.android.go.sopt.util.afterTextChanged
 import org.android.go.sopt.util.hideKeyboard

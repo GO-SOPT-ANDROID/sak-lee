@@ -1,10 +1,10 @@
 package org.android.go.sopt.data.repoImpl
 
-import org.android.go.sopt.domain.SignRepository
 import org.android.go.sopt.data.Api.SignApiService
 import org.android.go.sopt.data.model.sign.RequestSignInDto
 import org.android.go.sopt.data.model.sign.RequestSignUpDto
 import org.android.go.sopt.data.model.sign.ResponseSignUpDto
+import org.android.go.sopt.domain.SignRepository
 import retrofit2.Response
 import javax.inject.Inject
 

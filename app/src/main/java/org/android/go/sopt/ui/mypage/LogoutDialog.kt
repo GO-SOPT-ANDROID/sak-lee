@@ -9,7 +9,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.databinding.DialogAlertBinding
-import org.android.go.sopt.databinding.FragmentMypageBinding
 
 
 class LogoutDialog() : DialogFragment() {
@@ -49,7 +48,7 @@ class LogoutDialog() : DialogFragment() {
     }
 
     override fun onDestroy() {
-        _binding=null
+        _binding = null
         super.onDestroy()
 
     }

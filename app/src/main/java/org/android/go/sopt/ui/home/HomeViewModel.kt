@@ -8,7 +8,7 @@ import org.android.go.sopt.domain.HomeRepository
 import javax.inject.Inject
 
 @dagger.hilt.android.lifecycle.HiltViewModel
-class HomeViewModel  @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val apiRepository: HomeRepository
 ) : ViewModel() {
     fun getUserList(): Flow<PagingData<ResponseUserInfo>> = apiRepository.getUserList()

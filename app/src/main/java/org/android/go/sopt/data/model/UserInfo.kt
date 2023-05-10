@@ -4,5 +4,5 @@ data class UserInfo(
     val id: String,
     val pwd: String,
     val name: String,
-    val specialty :String
+    val specialty: String
 )

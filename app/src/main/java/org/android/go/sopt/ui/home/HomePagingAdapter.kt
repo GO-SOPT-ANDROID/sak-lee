@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.data.model.home.ResponseUserInfo
 import org.android.go.sopt.databinding.ItemGithubInfoBinding
 
-class HomePagingAdapter (
+class HomePagingAdapter(
 ) : PagingDataAdapter<ResponseUserInfo, HomePagingAdapter.PagingViewHolder>(
     HomeDiffCallback()
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagingViewHolder {
-        val binding = ItemGithubInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemGithubInfoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PagingViewHolder(binding)
     }
 
