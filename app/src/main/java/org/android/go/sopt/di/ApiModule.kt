@@ -12,12 +12,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
-    @Provides
-    @Singleton
-    fun provideSignApiService(retrofit: Retrofit): SignApiService = retrofit.create(SignApiService::class.java)
-
 
     @Provides
     @Singleton
-    fun provideHomeApiService(retrofit: Retrofit): HomeApiService = retrofit.create(HomeApiService::class.java)
+    fun provideSignApiService(@SoptRetrofit retrofit: Retrofit): SignApiService = retrofit.create(SignApiService::class.java)
+    @Provides
+    @Singleton
+    fun provideHomeApiService(@ReqresRetrofit retrofit: Retrofit): HomeApiService = retrofit.create(HomeApiService::class.java)
+
 }
