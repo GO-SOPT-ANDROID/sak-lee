@@ -3,7 +3,7 @@ package org.android.go.sopt.data.datasource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import org.android.go.sopt.data.Api.HomeApiService
-import org.android.go.sopt.data.model.ResponseUserInfo
+import org.android.go.sopt.data.model.home.ResponseUserInfo
 
 class UserPagingSource (
     private val apiService: HomeApiService,

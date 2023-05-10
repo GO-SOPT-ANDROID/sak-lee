@@ -21,6 +21,7 @@ object Constants {
 object API {
     const val API_TAG = "Retrofit2"
     const val BASE_URL = BuildConfig.AUTH_BASE_URL
+    const val REQRES_BASE_URL = BuildConfig.REQRES_BASE_URL
     const val SIGN_IN = "sign-in"
     const val SIGN_UP = "sign-up"
 }

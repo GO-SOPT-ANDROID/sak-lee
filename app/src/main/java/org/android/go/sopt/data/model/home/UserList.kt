@@ -1,6 +1,8 @@
-package org.android.go.sopt.data.model
+package org.android.go.sopt.data.model.home
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.android.go.sopt.data.model.home.ResponseUserInfo
+import org.android.go.sopt.data.model.home.Support
 
 @Serializable
 data class UserList(

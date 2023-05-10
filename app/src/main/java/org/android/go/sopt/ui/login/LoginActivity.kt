@@ -13,12 +13,13 @@ import org.android.go.sopt.App
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityLoginBinding
-import org.android.go.sopt.data.model.RequestSignInDto
+import org.android.go.sopt.data.model.sign.RequestSignInDto
 import org.android.go.sopt.ui.join.JoinActivity
 import org.android.go.sopt.ui.join.JoinViewModel
 import org.android.go.sopt.util.User
 import org.android.go.sopt.util.hideKeyboard
 import org.android.go.sopt.util.toast
+
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
@@ -40,12 +41,18 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            viewModel.signIn(RequestSignInDto(binding.etvId.text.toString(), binding.etvPwdCheck.text.toString()))
+            //test version
+            viewModel.signIn(
+                RequestSignInDto(
+                    binding.etvId.text.toString(),
+                    binding.etvPwdCheck.text.toString()
+                )
+            )
             val isLoginSuccessful =
                 checkLogin(binding.etvId.text.toString(), binding.etvPwdCheck.text.toString())
             toast(if (isLoginSuccessful) getString(R.string.login_success) else getString(R.string.login_fail))
             if (isLoginSuccessful) {
-                App.prefs.isLogin=isLoginSuccessful
+                App.prefs.isLogin = isLoginSuccessful
                 User.login(App.prefs.getUserInfo())
                 Intent(this, MainActivity::class.java).apply {
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)

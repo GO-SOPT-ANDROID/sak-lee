@@ -6,7 +6,7 @@
     <data>
             <variable
                 name="responseUserInfo"
-                type="org.android.go.sopt.data.model.ResponseUserInfo" />
+                type="org.android.go.sopt.data.model.home.ResponseUserInfo" />
     </data>
      <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lo_rvitem"

@@ -1,8 +1,8 @@
 package org.android.go.sopt.domain
 
-import org.android.go.sopt.data.model.RequestSignInDto
-import org.android.go.sopt.data.model.RequestSignUpDto
-import org.android.go.sopt.data.model.ResponseSignUpDto
+import org.android.go.sopt.data.model.sign.RequestSignInDto
+import org.android.go.sopt.data.model.sign.RequestSignUpDto
+import org.android.go.sopt.data.model.sign.ResponseSignUpDto
 import retrofit2.Response
 import javax.inject.Singleton
 

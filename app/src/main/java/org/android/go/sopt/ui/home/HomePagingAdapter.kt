@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import org.android.go.sopt.data.model.ResponseUserInfo
+import org.android.go.sopt.data.model.home.ResponseUserInfo
 import org.android.go.sopt.databinding.ItemGithubInfoBinding
 
 class HomePagingAdapter (
@@ -25,7 +25,7 @@ class HomePagingAdapter (
     inner class PagingViewHolder(private val binding: ItemGithubInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data:ResponseUserInfo) {
+        fun bind(data: ResponseUserInfo) {
             binding.responseUserInfo = data
             binding.executePendingBindings()
         }
@@ -34,7 +34,7 @@ class HomePagingAdapter (
 }
 
 class HomeDiffCallback : DiffUtil.ItemCallback<ResponseUserInfo>() {
-    override fun areItemsTheSame(oldItem:ResponseUserInfo, newItem: ResponseUserInfo): Boolean {
+    override fun areItemsTheSame(oldItem: ResponseUserInfo, newItem: ResponseUserInfo): Boolean {
         return oldItem.id == newItem.id
     }
 

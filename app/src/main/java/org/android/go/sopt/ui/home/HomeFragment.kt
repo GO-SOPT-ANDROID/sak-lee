@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.android.go.sopt.R
-import org.android.go.sopt.data.model.ResponseUserInfo
+import org.android.go.sopt.data.model.home.ResponseUserInfo
 import org.android.go.sopt.databinding.FragmentHomeBinding
 
 @AndroidEntryPoint

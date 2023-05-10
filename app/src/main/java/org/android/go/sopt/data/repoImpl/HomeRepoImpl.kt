@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import org.android.go.sopt.data.Api.HomeApiService
 import org.android.go.sopt.data.datasource.UserPagingSource
-import org.android.go.sopt.data.model.ResponseUserInfo
+import org.android.go.sopt.data.model.home.ResponseUserInfo
 import org.android.go.sopt.domain.HomeRepository
 import javax.inject.Inject
 

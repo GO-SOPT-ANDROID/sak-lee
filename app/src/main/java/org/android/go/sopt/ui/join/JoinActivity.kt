@@ -9,7 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.App
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.ActivityJoinBinding
-import org.android.go.sopt.data.model.RequestSignUpDto
+import org.android.go.sopt.data.model.sign.RequestSignUpDto
 import org.android.go.sopt.data.model.UserInfo
 import org.android.go.sopt.util.Constants.INPUT_SUCCESS
 import org.android.go.sopt.util.afterTextChanged
@@ -66,15 +66,18 @@ class JoinActivity : AppCompatActivity() {
     }
 
     private fun clickJoin() {
-        setUser()
+
         binding.btnJoin.setOnClickListener {
+            //test version
             viewModel.signUp(
                 RequestSignUpDto(
-                binding.etvId.text.toString(),
-                binding.etvPwd.text.toString(),
-                binding.etvName.text.toString(),
-                binding.etvSpecialty.text.toString())
+                    binding.etvId.text.toString(),
+                    binding.etvPwd.text.toString(),
+                    binding.etvName.text.toString(),
+                    binding.etvSpecialty.text.toString()
+                )
             )
+            setUser()
             val intent = Intent().apply {
                 putExtra("id", binding.etvId.text.toString())
                 putExtra("password", binding.etvPwdCheck.text.toString())
