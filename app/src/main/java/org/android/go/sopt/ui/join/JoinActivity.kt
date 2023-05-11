@@ -2,6 +2,7 @@ package org.android.go.sopt.ui.join
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,7 @@ import org.android.go.sopt.databinding.ActivityJoinBinding
 import org.android.go.sopt.util.Constants.INPUT_SUCCESS
 import org.android.go.sopt.util.afterTextChanged
 import org.android.go.sopt.util.hideKeyboard
+import org.android.go.sopt.util.toast
 
 @AndroidEntryPoint
 class JoinActivity : AppCompatActivity() {
@@ -28,6 +30,7 @@ class JoinActivity : AppCompatActivity() {
         initViews()
         setupMsg()
         clickJoin()
+        signUpResult()
     }
 
     private fun setupMsg() {
@@ -66,7 +69,6 @@ class JoinActivity : AppCompatActivity() {
     }
 
     private fun clickJoin() {
-
         binding.btnJoin.setOnClickListener {
             //test version
             viewModel.signUp(
@@ -77,13 +79,20 @@ class JoinActivity : AppCompatActivity() {
                     binding.etvSpecialty.text.toString()
                 )
             )
-            setUser()
-            val intent = Intent().apply {
-                putExtra("id", binding.etvId.text.toString())
-                putExtra("password", binding.etvPwdCheck.text.toString())
-            }
-            setResult(RESULT_OK, intent)
-            finish()
+        }
+    }
+
+    private fun signUpResult() {
+        viewModel.signUpResult.observe(this) {
+            if (it) {
+                setUser()
+                val intent = Intent().apply {
+                    putExtra("id", binding.etvId.text.toString())
+                    putExtra("password", binding.etvPwdCheck.text.toString())
+                }
+                setResult(RESULT_OK, intent)
+                finish()
+            } else toast("회원가입 실패", Toast.LENGTH_SHORT)
         }
     }
 

@@ -40,6 +40,9 @@ class JoinViewModel @Inject constructor(
     private val _sign_Intro_Msg = MutableLiveData("")
     val sign_Intro_Msg: LiveData<String> = _sign_Intro_Msg
 
+    private val _signUpResult = MutableLiveData(false)
+    val signUpResult : LiveData<Boolean> = _signUpResult
+
     private fun checkIdLength(id: String) =
         id.isNullOrEmpty() || id.length in ID_COUNT_MIN..ID_COUNT_MAX
 
@@ -73,20 +76,7 @@ class JoinViewModel @Inject constructor(
 
     fun signUp(requestSignUpDto: RequestSignUpDto) = viewModelScope.launch {
         val response = apiRepository.singUp(requestSignUpDto)
-        if (response.isSuccessful) {
-            Log.d("test", "test")
-        } else {
-            Log.d("test", "test")
-        }
-    }
-
-    fun signIn(requestSignInDto: RequestSignInDto) = viewModelScope.launch {
-        val response = apiRepository.singIn(requestSignInDto)
-        if (response.isSuccessful) {
-            Log.d("test", "test")
-        } else {
-            Log.d("test", "test")
-        }
+        _signUpResult.value = response.isSuccessful
     }
 
 }
