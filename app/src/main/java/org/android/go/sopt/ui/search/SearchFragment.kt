@@ -20,7 +20,8 @@ import org.android.go.sopt.util.pagingSubmitData
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
     private val viewModel by viewModels<SearchViewModel>()
-    private lateinit var binding: FragmentSearchBinding
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
     private val adapter = SearchPagingAdapter()
     private val searchDebouncer = Debouncer<String>()
     override fun onCreateView(
@@ -28,7 +29,7 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding =
+        _binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
         return binding.root
     }
@@ -61,4 +62,8 @@ class SearchFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 }
