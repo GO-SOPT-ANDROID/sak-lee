@@ -3,6 +3,7 @@ package org.android.go.sopt.ui.login
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -17,6 +18,7 @@ import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.ui.join.JoinActivity
 import org.android.go.sopt.util.User
 import org.android.go.sopt.util.hideKeyboard
+import org.android.go.sopt.util.toast
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -63,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(this)
                 }
             }
+            else toast("로그인 실패", Toast.LENGTH_SHORT)
         }
     }
 

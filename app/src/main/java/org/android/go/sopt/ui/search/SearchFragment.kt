@@ -5,12 +5,14 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentSearchBinding
+import org.android.go.sopt.util.Debouncer
 import org.android.go.sopt.util.hideKeyboard
 import org.android.go.sopt.util.pagingSubmitData
 
@@ -20,6 +22,7 @@ class SearchFragment : Fragment() {
     private val viewModel by viewModels<SearchViewModel>()
     private lateinit var binding: FragmentSearchBinding
     private val adapter = SearchPagingAdapter()
+    private val searchDebouncer = Debouncer<String>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,6 +46,12 @@ class SearchFragment : Fragment() {
                 handled = true
             }
             handled
+        }
+
+        binding.etvSearch.doAfterTextChanged { text ->
+            searchDebouncer.setDelay(text.toString(), 500L) {
+                initAdapter(binding.etvSearch.text.toString())
+            }
         }
     }
 
