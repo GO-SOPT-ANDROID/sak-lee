@@ -15,17 +15,15 @@ import org.android.go.sopt.R
 import org.android.go.sopt.data.model.sign.RequestSignInDto
 import org.android.go.sopt.databinding.ActivityLoginBinding
 import org.android.go.sopt.ui.join.JoinActivity
-import org.android.go.sopt.ui.join.JoinViewModel
 import org.android.go.sopt.util.User
 import org.android.go.sopt.util.hideKeyboard
-import org.android.go.sopt.util.toast
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
-    private val viewModel by viewModels<JoinViewModel>()
+    private val viewModel by viewModels<LoginViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         setResultSignUp()
         initClick()
+        signInResult()
     }
 
     private fun initClick() {
@@ -41,24 +40,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            //test version
             viewModel.signIn(
                 RequestSignInDto(
                     binding.etvId.text.toString(),
                     binding.etvPwdCheck.text.toString()
                 )
             )
-            val isLoginSuccessful =
-                checkLogin(binding.etvId.text.toString(), binding.etvPwdCheck.text.toString())
-            toast(if (isLoginSuccessful) getString(R.string.login_success) else getString(R.string.login_fail))
-            if (isLoginSuccessful) {
-                App.prefs.isLogin = isLoginSuccessful
-                User.login(App.prefs.getUserInfo())
-                Intent(this, MainActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(this)
-                }
-            }
         }
 
         binding.btnJoin.setOnClickListener {
@@ -66,8 +53,18 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkLogin(etvId: String, etvPwd: String) =
-        etvId == App.prefs.id && etvPwd == App.prefs.pwd
+    private fun signInResult() {
+        viewModel.signInResult.observe(this) {
+            if (it) {
+                App.prefs.isLogin = it
+                User.login(App.prefs.getUserInfo())
+                Intent(this, MainActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(this)
+                }
+            }
+        }
+    }
 
     private fun setResultSignUp() {
         activityResultLauncher =
