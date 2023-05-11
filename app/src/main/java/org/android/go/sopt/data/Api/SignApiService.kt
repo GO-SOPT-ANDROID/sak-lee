@@ -2,6 +2,7 @@ package org.android.go.sopt.data.Api
 
 import org.android.go.sopt.data.model.sign.RequestSignInDto
 import org.android.go.sopt.data.model.sign.RequestSignUpDto
+import org.android.go.sopt.data.model.sign.ResponseSignInDto
 import org.android.go.sopt.data.model.sign.ResponseSignUpDto
 import org.android.go.sopt.util.API.SIGN_IN
 import org.android.go.sopt.util.API.SIGN_UP
@@ -15,5 +16,6 @@ interface SignApiService {
     suspend fun singUp(@Body requestSignUpDto: RequestSignUpDto): Response<ResponseSignUpDto>
 
     @POST(SIGN_IN)
-    suspend fun singIn(@Body requestSignUpDto: RequestSignInDto): Response<ResponseSignUpDto>
+    suspend fun singIn(@Body requestSignUpDto: RequestSignInDto): Response<ResponseSignInDto>
+
 }
