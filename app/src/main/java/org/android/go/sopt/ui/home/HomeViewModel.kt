@@ -1,5 +1,6 @@
 package org.android.go.sopt.ui.home
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
@@ -11,5 +12,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val apiRepository: HomeRepository
 ) : ViewModel() {
+
+
     fun getUserList(): Flow<PagingData<ResponseUserInfo>> = apiRepository.getUserList()
+
 }

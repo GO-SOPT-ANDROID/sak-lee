@@ -14,6 +14,7 @@ import org.android.go.sopt.util.pagingSubmitData
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
+
     private val viewModel by viewModels<HomeViewModel>()
 
     private var _binding: FragmentHomeBinding? = null
@@ -33,8 +34,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initAdapter()
 
+        initAdapter()
     }
 
     private fun initAdapter() {
