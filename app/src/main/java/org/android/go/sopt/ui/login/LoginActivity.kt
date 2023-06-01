@@ -30,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding.lifecycleOwner = this
+        binding.vm=viewModel
         setContentView(binding.root)
         setResultSignUp()
         initClick()

@@ -188,6 +188,7 @@
             android:enabled="false"
             android:text="@string/btn_sign"
             android:textColor="@color/white"
+            onThrottleClick="@{()->vm.signUp()}"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
