@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
     }
-
     private fun initAdapter() {
         adapter.addLoadStateListener {
             binding.progressLoading.isVisible = it.source.refresh is LoadState.Loading

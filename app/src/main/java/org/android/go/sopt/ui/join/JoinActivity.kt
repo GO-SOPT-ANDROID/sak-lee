@@ -56,7 +56,6 @@ class JoinActivity : AppCompatActivity() {
             )
         }
     }
-
     private fun isErrorMsg() {
         viewModel.loginFormState.observe(this@JoinActivity) {
             val loginState = it ?: return@observe
@@ -67,7 +66,6 @@ class JoinActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun setEnableBtn() {
         viewModel.sign_Intro_Msg.observe(this@JoinActivity) {
             binding.btnJoin.isEnabled = it == INPUT_SUCCESS
