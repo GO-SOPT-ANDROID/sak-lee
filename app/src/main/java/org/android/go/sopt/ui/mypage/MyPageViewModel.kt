@@ -9,6 +9,7 @@ class MyPageViewModel : ViewModel() {
     private val _isLogin = MutableLiveData<Boolean>(User.isLoggedIn.value)
     val isLogin: LiveData<Boolean>
         get() = _isLogin
+
     fun logout(boolean: Boolean) {
         _isLogin.value = boolean
         User.logout()

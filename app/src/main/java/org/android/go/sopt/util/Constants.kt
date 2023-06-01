@@ -1,5 +1,7 @@
 package org.android.go.sopt.util
 
+import org.android.go.sopt.BuildConfig
+
 object Constants {
 
     const val ID_COUNT_MIN = 6
@@ -14,4 +16,16 @@ object Constants {
 
     const val ID_REGEX = ""
     const val PW_REGEX = ""
+}
+
+object API {
+    const val API_TAG = "Retrofit2"
+    const val BASE_URL = BuildConfig.AUTH_BASE_URL
+    const val REQRES_BASE_URL = BuildConfig.REQRES_BASE_URL
+    const val KAKAO_BASE_URL = BuildConfig.KAKAO_BASE_URL
+    const val KAKAO_REST_API = BuildConfig.KAKAO_REST_API
+    const val SIGN_IN = "sign-in"
+    const val SIGN_UP = "sign-up"
+    const val SEARCH = "/v2/search/image"
+    const val HOME_USER = "api/users"
 }

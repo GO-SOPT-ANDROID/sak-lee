@@ -5,8 +5,8 @@
 
     <data>
             <variable
-                name="fakeinfo"
-                type="org.android.go.sopt.model.FakeGithubInfoItem" />
+                name="responseUserInfo"
+                type="org.android.go.sopt.data.model.home.ResponseUserInfo" />
     </data>
      <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lo_rvitem"
@@ -16,49 +16,44 @@
         android:layout_marginHorizontal="12dp"
         android:layout_marginVertical="15dp">
 
+         <TextView
+             android:id="@+id/tv_first_name"
+             style="@style/TextTitle"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@{responseUserInfo.first_name}"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+             tools:text="name" />
+
+         <TextView
+             android:id="@+id/tv_email"
+             style="@style/TextTitle.mini"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="5dp"
+             android:text="@{responseUserInfo.email}"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/tv_first_name"
+             tools:text="email" />
+
         <ImageView
             android:id="@+id/iv_fake_github_repo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="fitXY"
+            imageUrl="@{responseUserInfo.avatar}"
             android:src="@drawable/ic_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:id="@+id/tv_name"
-            style="@style/TextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{fakeinfo.name}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_fake_github_repo"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="language" />
+            app:layout_constraintTop_toBottomOf="@id/tv_email" />
 
-        <TextView
-            android:id="@+id/tv_full_name"
-            style="@style/TextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@{fakeinfo.full_name}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_fake_github_repo"
-            app:layout_constraintTop_toBottomOf="@id/tv_name"
-            tools:text="language" />
 
-        <TextView
-            android:id="@+id/tv_language"
-            style="@style/TextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="@{fakeinfo.language}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_fake_github_repo"
-            app:layout_constraintTop_toBottomOf="@id/tv_full_name"
-            tools:text="language" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

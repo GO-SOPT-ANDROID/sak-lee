@@ -3,6 +3,10 @@
 ## 과제 링크 제출란
 1주차 - LifeCycle,EditText
 https://bitter-latency-758.notion.site/EditText-f990fe703d6342dc81c15f6c6511e26a 
+
+4주차 -코루틴을 활용한 서버통신 suspend,enqueue
+공식문서로 알아 보았습니다.
+[suspend](https://bitter-latency-758.notion.site/suspend-functions-57985d0c5dc04312abc7799934b237be)
 ## 템플릿 설명
 레포지터리에는 총 2개의 브랜치가 있습니다.
 ### main

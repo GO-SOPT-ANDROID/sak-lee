@@ -2,21 +2,26 @@ package org.android.go.sopt.ui.join
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.App
 import org.android.go.sopt.R
+import org.android.go.sopt.data.model.UserInfo
+import org.android.go.sopt.data.model.sign.RequestSignUpDto
 import org.android.go.sopt.databinding.ActivityJoinBinding
-import org.android.go.sopt.model.UserInfo
 import org.android.go.sopt.util.Constants.INPUT_SUCCESS
 import org.android.go.sopt.util.afterTextChanged
 import org.android.go.sopt.util.hideKeyboard
+import org.android.go.sopt.util.toast
 
+@AndroidEntryPoint
 class JoinActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityJoinBinding
-    private val viewModel: JoinViewModel by viewModels()
+    private val viewModel by viewModels<JoinViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +30,7 @@ class JoinActivity : AppCompatActivity() {
         initViews()
         setupMsg()
         clickJoin()
+        signUpResult()
     }
 
     private fun setupMsg() {
@@ -64,13 +70,29 @@ class JoinActivity : AppCompatActivity() {
 
     private fun clickJoin() {
         binding.btnJoin.setOnClickListener {
-            setUser()
-            val intent = Intent().apply {
-                putExtra("id", binding.etvId.text.toString())
-                putExtra("password", binding.etvPwdCheck.text.toString())
-            }
-            setResult(RESULT_OK, intent)
-            finish()
+            //test version
+            viewModel.signUp(
+                RequestSignUpDto(
+                    binding.etvId.text.toString(),
+                    binding.etvPwd.text.toString(),
+                    binding.etvName.text.toString(),
+                    binding.etvSpecialty.text.toString()
+                )
+            )
+        }
+    }
+
+    private fun signUpResult() {
+        viewModel.signUpResult.observe(this) {
+            if (it) {
+                setUser()
+                val intent = Intent().apply {
+                    putExtra("id", binding.etvId.text.toString())
+                    putExtra("password", binding.etvPwdCheck.text.toString())
+                }
+                setResult(RESULT_OK, intent)
+                finish()
+            } else toast("회원가입 실패", Toast.LENGTH_SHORT)
         }
     }
 
