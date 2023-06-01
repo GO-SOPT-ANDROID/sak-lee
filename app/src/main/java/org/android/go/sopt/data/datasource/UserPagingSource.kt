@@ -2,6 +2,7 @@ package org.android.go.sopt.data.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import kotlinx.coroutines.delay
 import org.android.go.sopt.data.Api.HomeApiService
 import org.android.go.sopt.data.model.home.ResponseUserInfo
 
@@ -17,6 +18,8 @@ class UserPagingSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ResponseUserInfo> {
+
+            delay(2000)
         val position = params.key ?: 0
         return runCatching {
             val userList = apiService.getMainPage(position).body()?.data

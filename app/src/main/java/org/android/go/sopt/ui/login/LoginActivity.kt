@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
-        binding.vm=viewModel
+        binding.vm = viewModel
         setContentView(binding.root)
         setResultSignUp()
         initClick()
@@ -66,8 +66,7 @@ class LoginActivity : AppCompatActivity() {
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(this)
                 }
-            }
-            else toast("로그인 실패", Toast.LENGTH_SHORT)
+            } else toast("로그인 실패", Toast.LENGTH_SHORT)
         }
     }
 

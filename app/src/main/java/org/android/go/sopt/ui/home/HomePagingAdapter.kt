@@ -3,7 +3,6 @@ package org.android.go.sopt.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import org.android.go.sopt.data.model.home.ResponseUserInfo
 import org.android.go.sopt.databinding.ItemGithubInfoBinding
@@ -32,6 +31,7 @@ class HomePagingAdapter(
             binding.executePendingBindings()
         }
     }
+
     companion object {
         private val HomeDiffCallback =
             DiffCallback<ResponseUserInfo>(id = { old, new -> old.id == new.id })

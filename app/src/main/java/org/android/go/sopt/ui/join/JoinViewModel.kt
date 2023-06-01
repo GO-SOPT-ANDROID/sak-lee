@@ -86,7 +86,7 @@ class JoinViewModel @Inject constructor(
     }
 
 
-        fun loginDataChanged() {
+    fun loginDataChanged() {
         val id = id.value ?: ""
         val pwd = pwd.value ?: ""
         val pwdCheck = pwdCheck.value
@@ -95,8 +95,9 @@ class JoinViewModel @Inject constructor(
             isIdValid(id).not() -> _loginForm.value = LoginFormState(idError = ID_REGEX_MSG)
             checkPwdLength(pwd).not() -> _loginForm.value = LoginFormState(pwError = PWD_REGEX_MSG)
             isPwdValid(pwd).not() -> _loginForm.value = LoginFormState(pwError = ID_REGEX_MSG)
-            checkPwd(pwd, pwdCheck).not() -> _loginForm.value = LoginFormState(pwCheckError = PWD_CHECK)
-            else ->_loginForm.value=LoginFormState(isDataValid = true)
+            checkPwd(pwd, pwdCheck).not() -> _loginForm.value =
+                LoginFormState(pwCheckError = PWD_CHECK)
+            else -> _loginForm.value = LoginFormState(isDataValid = true)
         }
     }
 
@@ -111,7 +112,14 @@ class JoinViewModel @Inject constructor(
     }
 
     fun signUp() = viewModelScope.launch {
-        val response = apiRepository.singUp(RequestSignUpDto(id.value?:"",pwd.value?:"",name.value?:"", specialty.value?:""))
+        val response = apiRepository.singUp(
+            RequestSignUpDto(
+                id.value ?: "",
+                pwd.value ?: "",
+                name.value ?: "",
+                specialty.value ?: ""
+            )
+        )
         _signUpResult.value = response.isSuccessful
     }
 

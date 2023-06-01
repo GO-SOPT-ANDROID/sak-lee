@@ -35,7 +35,7 @@ class GalleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnGalleryPickImage.setOnClickListener {
             launcher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
-            viewModel.image.observe(viewLifecycleOwner){
+            viewModel.image.observe(viewLifecycleOwner) {
 
                 viewModel.uploadImage(it.toFormData())
             }

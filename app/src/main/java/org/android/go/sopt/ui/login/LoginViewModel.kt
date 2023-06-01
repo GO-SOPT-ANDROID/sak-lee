@@ -1,6 +1,5 @@
 package org.android.go.sopt.ui.login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +14,7 @@ class LoginViewModel @Inject constructor(
     private val apiRepository: SignRepository
 ) : ViewModel() {
     private val _signInResult = MutableLiveData(false)
-    val signInResult : LiveData<Boolean> = _signInResult
+    val signInResult: LiveData<Boolean> = _signInResult
 
     fun signIn(requestSignInDto: RequestSignInDto) = viewModelScope.launch {
         val response = apiRepository.singIn(requestSignInDto)

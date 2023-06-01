@@ -10,7 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.App
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.UserInfo
-import org.android.go.sopt.data.model.sign.RequestSignUpDto
 import org.android.go.sopt.databinding.ActivityJoinBinding
 import org.android.go.sopt.util.Constants.INPUT_SUCCESS
 import org.android.go.sopt.util.hideKeyboard
@@ -33,7 +32,6 @@ class JoinActivity : AppCompatActivity() {
         setupMsg()
         isErrorMsg()
         setEnableBtn()
-//        clickJoin()
         signUpResult()
 
     }
@@ -79,18 +77,6 @@ class JoinActivity : AppCompatActivity() {
     /**
      * user가 올바르게 회원가입 입력하고 있는지 알려주려고 만듬
      * */
-
-//    private fun clickJoin() {
-//        binding.btnJoin.setOnClickListener {
-//            val id = viewModel.id.value ?: return@setOnClickListener
-//            val pwd = viewModel.pwd.value ?: return@setOnClickListener
-//            val name = viewModel.name.value ?: return@setOnClickListener
-//            val specialty = viewModel.specialty.value ?: return@setOnClickListener
-//            viewModel.signUp(
-//                RequestSignUpDto(id, pwd, name, specialty)
-//            )
-//        }
-//    }
 
     private fun signUpResult() {
         viewModel.signUpResult.observe(this@JoinActivity) {
