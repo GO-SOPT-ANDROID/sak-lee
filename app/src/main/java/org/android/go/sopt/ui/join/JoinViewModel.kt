@@ -1,10 +1,7 @@
 package org.android.go.sopt.ui.join
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import org.android.go.sopt.data.model.sign.RequestSignUpDto
@@ -31,7 +28,22 @@ class JoinViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
-    val loginFormState: LiveData<LoginFormState> get() = _loginForm
+
+    //    val loginFormState: LiveData<LoginFormState> get() = _loginForm
+    val loginFormState: LiveData<LoginFormState>
+        get() = _loginForm.map {
+            val id = id.value ?: ""
+            val pwd = pwd.value ?: ""
+            val pwdCheck = pwdCheck.value
+            when {
+                checkIdLength(id).not() -> LoginFormState(idError = ID_REGEX_MSG)
+                isIdValid(id).not() -> LoginFormState(idError = ID_REGEX_MSG)
+                checkPwdLength(pwd).not() -> LoginFormState(pwError = PWD_REGEX_MSG)
+                isPwdValid(pwd).not() -> LoginFormState(pwError = ID_REGEX_MSG)
+                checkPwd(pwd, pwdCheck).not() -> LoginFormState(pwCheckError = PWD_CHECK)
+                else -> LoginFormState(isDataValid = true)
+            }
+        }
 
     val id = MutableLiveData<String>()
 
@@ -42,9 +54,6 @@ class JoinViewModel @Inject constructor(
     val name = MutableLiveData<String>()
 
     val specialty = MutableLiveData<String>()
-
-    private val _sign_Intro_Msg = MutableLiveData("")
-    val sign_Intro_Msg: LiveData<String> = _sign_Intro_Msg
 
     private val _signUpResult = MutableLiveData(false)
     val signUpResult: LiveData<Boolean> = _signUpResult
@@ -94,20 +103,10 @@ class JoinViewModel @Inject constructor(
             checkIdLength(id).not() -> _loginForm.value = LoginFormState(idError = ID_REGEX_MSG)
             isIdValid(id).not() -> _loginForm.value = LoginFormState(idError = ID_REGEX_MSG)
             checkPwdLength(pwd).not() -> _loginForm.value = LoginFormState(pwError = PWD_REGEX_MSG)
-            isPwdValid(pwd).not() -> _loginForm.value = LoginFormState(pwError = ID_REGEX_MSG)
+            isPwdValid(pwd).not() -> _loginForm.value = LoginFormState(pwError = PWD_REGEX_MSG)
             checkPwd(pwd, pwdCheck).not() -> _loginForm.value =
                 LoginFormState(pwCheckError = PWD_CHECK)
             else -> _loginForm.value = LoginFormState(isDataValid = true)
-        }
-    }
-
-    fun btnCheck(
-        id: String, pwd: String, pwdCheck: String, name: String,
-        specialty: String
-    ) {
-        when {
-            hasBlank(id, pwd, pwdCheck, name, specialty) -> _sign_Intro_Msg.value = NULL_JOIN
-            else -> _sign_Intro_Msg.value = INPUT_SUCCESS
         }
     }
 

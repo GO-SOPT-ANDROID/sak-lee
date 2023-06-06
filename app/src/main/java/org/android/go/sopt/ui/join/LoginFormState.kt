@@ -6,5 +6,3 @@ data class LoginFormState(
     val pwCheckError: String? = null,
     val isDataValid: Boolean = false
 )
-
-sealed class LoginForm

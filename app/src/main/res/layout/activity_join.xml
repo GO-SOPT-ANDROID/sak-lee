@@ -33,14 +33,6 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/tv_intro_msg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{vm.sign_Intro_Msg}"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
                     android:id="@+id/tv_sign_title"
                     style="@style/TextTitle"
                     android:layout_width="match_parent"

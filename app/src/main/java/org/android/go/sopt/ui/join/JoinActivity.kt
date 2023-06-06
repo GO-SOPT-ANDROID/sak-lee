@@ -29,9 +29,8 @@ class JoinActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         initViews()
-        setupMsg()
         isErrorMsg()
-        setEnableBtn()
+//        setEnableBtn()
         signUpResult()
 
     }
@@ -45,17 +44,6 @@ class JoinActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupMsg() {
-        viewModel.specialty.observe(this@JoinActivity) {
-            viewModel.btnCheck(
-                id = binding.etvId.text.toString(),
-                pwd = binding.etvPwd.text.toString(),
-                pwdCheck = binding.etvPwdCheck.text.toString(),
-                name = binding.etvName.text.toString(),
-                specialty = binding.etvSpecialty.text.toString()
-            )
-        }
-    }
     private fun isErrorMsg() {
         viewModel.loginFormState.observe(this@JoinActivity) {
             val loginState = it ?: return@observe
@@ -66,11 +54,11 @@ class JoinActivity : AppCompatActivity() {
             }
         }
     }
-    private fun setEnableBtn() {
-        viewModel.sign_Intro_Msg.observe(this@JoinActivity) {
-            binding.btnJoin.isEnabled = it == INPUT_SUCCESS
-        }
-    }
+//    private fun setEnableBtn() {
+//        viewModel.signIntroMsg.observe(this@JoinActivity) {
+//            binding.btnJoin.isEnabled = it == INPUT_SUCCESS
+//        }
+//    }
 
     /**
      * user가 올바르게 회원가입 입력하고 있는지 알려주려고 만듬
