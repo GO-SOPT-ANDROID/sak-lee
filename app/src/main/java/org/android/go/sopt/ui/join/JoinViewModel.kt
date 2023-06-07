@@ -29,21 +29,20 @@ class JoinViewModel @Inject constructor(
 
     private val _loginForm = MutableLiveData<LoginFormState>()
 
-    //    val loginFormState: LiveData<LoginFormState> get() = _loginForm
-    val loginFormState: LiveData<LoginFormState>
-        get() = _loginForm.map {
-            val id = id.value ?: ""
-            val pwd = pwd.value ?: ""
-            val pwdCheck = pwdCheck.value
-            when {
-                checkIdLength(id).not() -> LoginFormState(idError = ID_REGEX_MSG)
-                isIdValid(id).not() -> LoginFormState(idError = ID_REGEX_MSG)
-                checkPwdLength(pwd).not() -> LoginFormState(pwError = PWD_REGEX_MSG)
-                isPwdValid(pwd).not() -> LoginFormState(pwError = ID_REGEX_MSG)
-                checkPwd(pwd, pwdCheck).not() -> LoginFormState(pwCheckError = PWD_CHECK)
-                else -> LoginFormState(isDataValid = true)
-            }
-        }
+        val loginFormState: LiveData<LoginFormState> get() = _loginForm
+//    val loginFormState: LiveData<LoginFormState>
+//        get() = _loginForm.map {
+//            val id = id.value ?: ""
+//            val pwd = pwd.value ?: ""
+//            val pwdCheck = pwdCheck.value
+//            when {
+//                isIdValid(id).not() -> LoginFormState(idError = ID_REGEX_MSG)
+//
+//                isPwdValid(pwd).not() -> LoginFormState(pwError = ID_REGEX_MSG)
+//                checkPwd(pwd, pwdCheck).not() -> LoginFormState(pwCheckError = PWD_CHECK)
+//                else -> LoginFormState(isDataValid = true)
+//            }
+//        }
 
     val id = MutableLiveData<String>()
 
@@ -74,12 +73,6 @@ class JoinViewModel @Inject constructor(
         _image.value = requestBody
     }
 
-    private fun checkIdLength(id: String?) =
-        id.isNullOrEmpty() || id.length in ID_COUNT_MIN..ID_COUNT_MAX
-
-    private fun checkPwdLength(pwd: String?) =
-        pwd.isNullOrEmpty() || pwd.length in PWD_COUNT_MIN..PWD_COUNT_MAX
-
     private fun checkPwd(pwd: String?, pwdCheck: String?) = pwd == pwdCheck || pwd.isNullOrEmpty()
     private fun isIdValid(id: String) = id.isBlank() || idPattern.matcher(id).matches()
     private fun isPwdValid(pwd: String) = pwd.isBlank() || pwdPattern.matcher(pwd).matches()
@@ -100,9 +93,7 @@ class JoinViewModel @Inject constructor(
         val pwd = pwd.value ?: ""
         val pwdCheck = pwdCheck.value
         when {
-            checkIdLength(id).not() -> _loginForm.value = LoginFormState(idError = ID_REGEX_MSG)
             isIdValid(id).not() -> _loginForm.value = LoginFormState(idError = ID_REGEX_MSG)
-            checkPwdLength(pwd).not() -> _loginForm.value = LoginFormState(pwError = PWD_REGEX_MSG)
             isPwdValid(pwd).not() -> _loginForm.value = LoginFormState(pwError = PWD_REGEX_MSG)
             checkPwd(pwd, pwdCheck).not() -> _loginForm.value =
                 LoginFormState(pwCheckError = PWD_CHECK)
