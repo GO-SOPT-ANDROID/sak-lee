@@ -2,7 +2,6 @@ package org.android.go.sopt.ui.join
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +11,6 @@ import org.android.go.sopt.App
 import org.android.go.sopt.R
 import org.android.go.sopt.data.model.UserInfo
 import org.android.go.sopt.databinding.ActivityJoinBinding
-import org.android.go.sopt.util.Constants.INPUT_SUCCESS
 import org.android.go.sopt.util.hideKeyboard
 import org.android.go.sopt.util.toast
 
@@ -30,7 +28,6 @@ class JoinActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         initViews()
-        isErrorMsg()
         signUpResult()
     }
 
@@ -40,18 +37,6 @@ class JoinActivity : AppCompatActivity() {
                 hideKeyboard()
             }
             vm = viewModel
-        }
-    }
-
-    private fun isErrorMsg() {
-        viewModel.loginFormState.observe(this@JoinActivity) {
-            Log.d("test",it.isDataValid.toString())
-            val loginState = it ?: return@observe
-            if (!loginState.isDataValid) {
-                binding.tfId.error = loginState.idError
-                binding.tfPwd.error = loginState.pwError
-                binding.tfPwdCheck.error = loginState.pwCheckError
-            }
         }
     }
 

@@ -57,6 +57,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    tools:error = "@{vm.loginFormState.idError}"
                     app:errorEnabled="@{vm.loginFormState.idError != null }"
                     app:layout_constraintTop_toBottomOf="@+id/tv_id_title">
 
@@ -87,6 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="@{vm.loginFormState.pwError != null }"
+                    tools:error = "@{vm.loginFormState.pwError}"
                     app:layout_constraintTop_toBottomOf="@+id/tv_pwd_title">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -108,6 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:errorEnabled="@{vm.loginFormState.pwCheckError != null }"
+                    tools:error = "@{vm.loginFormState.pwCheckError}"
                     app:layout_constraintTop_toBottomOf="@+id/tf_pwd">
 
                     <com.google.android.material.textfield.TextInputEditText
