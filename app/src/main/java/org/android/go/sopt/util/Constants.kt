@@ -14,7 +14,7 @@ object Constants {
     const val NULL_JOIN = "빈칸이 있습니다."
     const val INPUT_SUCCESS = "Id,Pwd good!"
 
-    const val ID_REGEX = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{$ID_COUNT_MIN,$ID_COUNT_MAX}\$"
+    const val ID_REGEX = """"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{$ID_COUNT_MIN,$ID_COUNT_MAX}\$"""
     const val PW_REGEX = """^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^+\-=])(?=\S{$PWD_COUNT_MIN,$PWD_COUNT_MAX}${'$'}).*$"""
 }
 
