@@ -45,6 +45,7 @@ class JoinActivity : AppCompatActivity() {
 
     private fun isErrorMsg() {
         viewModel.loginFormState.observe(this@JoinActivity) {
+            Log.d("test",it.isDataValid.toString())
             val loginState = it ?: return@observe
             if (!loginState.isDataValid) {
                 binding.tfId.error = loginState.idError
