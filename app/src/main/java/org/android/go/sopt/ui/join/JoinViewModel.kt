@@ -1,20 +1,17 @@
 package org.android.go.sopt.ui.join
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import org.android.go.sopt.data.model.sign.RequestSignUpDto
 import org.android.go.sopt.domain.SignRepository
-import org.android.go.sopt.util.Constants.ID_COUNT_MAX
-import org.android.go.sopt.util.Constants.ID_COUNT_MIN
 import org.android.go.sopt.util.Constants.ID_REGEX
 import org.android.go.sopt.util.Constants.ID_REGEX_MSG
-import org.android.go.sopt.util.Constants.INPUT_SUCCESS
-import org.android.go.sopt.util.Constants.NULL_JOIN
 import org.android.go.sopt.util.Constants.PWD_CHECK
-import org.android.go.sopt.util.Constants.PWD_COUNT_MAX
-import org.android.go.sopt.util.Constants.PWD_COUNT_MIN
 import org.android.go.sopt.util.Constants.PWD_REGEX_MSG
 import org.android.go.sopt.util.Constants.PW_REGEX
 import org.android.go.sopt.util.ContentUriRequestBody
@@ -76,27 +73,20 @@ class JoinViewModel @Inject constructor(
     private fun checkPwd(pwd: String?, pwdCheck: String?) = pwd == pwdCheck || pwd.isNullOrEmpty()
     private fun isIdValid(id: String) = id.isBlank() || idPattern.matcher(id).matches()
     private fun isPwdValid(pwd: String) = pwd.isBlank() || pwdPattern.matcher(pwd).matches()
-
-    private fun hasBlank(
-        id: String,
-        pw: String,
-        pwdCheck: String,
-        name: String,
-        specialty: String
-    ): Boolean {
-        return id.isBlank() || pw.isBlank() || pwdCheck.isBlank() || name.isBlank() || specialty.isBlank()
-    }
-
+    private fun isCheckSpecialName(speciality:String,name:String) = speciality.isBlank() || name.isBlank()
 
     fun loginDataChanged() {
         val id = id.value ?: ""
         val pwd = pwd.value ?: ""
+        val speciality = specialty.value ?:""
+        val name = name.value?:""
         val pwdCheck = pwdCheck.value
         when {
             isIdValid(id).not() -> _loginForm.value = LoginFormState(idError = ID_REGEX_MSG)
             isPwdValid(pwd).not() -> _loginForm.value = LoginFormState(pwError = PWD_REGEX_MSG)
             checkPwd(pwd, pwdCheck).not() -> _loginForm.value =
                 LoginFormState(pwCheckError = PWD_CHECK)
+            isCheckSpecialName(speciality,name) -> _loginForm.value = LoginFormState(isDataValid = false)
             else -> _loginForm.value = LoginFormState(isDataValid = true)
         }
     }

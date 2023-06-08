@@ -177,7 +177,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            android:enabled="false"
+            android:enabled="@{vm.loginFormState.dataValid}"
             android:text="@string/btn_sign"
             android:textColor="@color/white"
             onThrottleClick="@{()->vm.signUp()}"

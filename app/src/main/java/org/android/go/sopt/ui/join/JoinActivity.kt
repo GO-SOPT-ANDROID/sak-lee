@@ -2,6 +2,7 @@ package org.android.go.sopt.ui.join
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -30,9 +31,7 @@ class JoinActivity : AppCompatActivity() {
 
         initViews()
         isErrorMsg()
-//        setEnableBtn()
         signUpResult()
-
     }
 
     private fun initViews() {
@@ -54,11 +53,6 @@ class JoinActivity : AppCompatActivity() {
             }
         }
     }
-//    private fun setEnableBtn() {
-//        viewModel.signIntroMsg.observe(this@JoinActivity) {
-//            binding.btnJoin.isEnabled = it == INPUT_SUCCESS
-//        }
-//    }
 
     /**
      * user가 올바르게 회원가입 입력하고 있는지 알려주려고 만듬
