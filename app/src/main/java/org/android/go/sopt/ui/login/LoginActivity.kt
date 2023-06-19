@@ -8,8 +8,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import org.android.go.sopt.App
 import org.android.go.sopt.MainActivity
 import org.android.go.sopt.R
@@ -32,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         binding.vm = viewModel
+        binding.lifecycleOwner = this
         setContentView(binding.root)
         setResultSignUp()
         initClick()
@@ -58,15 +65,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signInResult() {
-        viewModel.signInResult.observe(this) {
+        viewModel.signInResult.flowWithLifecycle(lifecycle).onEach {
             if (it) {
                 App.prefs.isLogin = it
                 User.login(App.prefs.getUserInfo())
-                Intent(this, MainActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(this)
-                }
+                test()
             } else toast("로그인 실패", Toast.LENGTH_SHORT)
+        }
+    private fun test() {
+        Intent(this, MainActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(this)
         }
     }
 
