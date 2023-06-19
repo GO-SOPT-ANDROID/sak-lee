@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.go.sopt.R
 import org.android.go.sopt.databinding.FragmentHomeBinding
@@ -14,6 +16,7 @@ import org.android.go.sopt.util.pagingSubmitData
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
+
     private val viewModel by viewModels<HomeViewModel>()
 
     private var _binding: FragmentHomeBinding? = null
@@ -34,10 +37,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
-
     }
-
     private fun initAdapter() {
+        adapter.addLoadStateListener {
+            binding.progressLoading.isVisible = it.source.refresh is LoadState.Loading
+        }
         binding.rvFakeGithubInfo.adapter = adapter.apply {
             pagingSubmitData(viewLifecycleOwner, viewModel.getUserList(), adapter)
         }
@@ -47,7 +51,6 @@ class HomeFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
-
 
 }
 

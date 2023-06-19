@@ -11,5 +11,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val apiRepository: HomeRepository
 ) : ViewModel() {
-    fun getUserList(): Flow<PagingData<ResponseUserInfo>> = apiRepository.getUserList()
+    fun getUserList(): Flow<PagingData<ResponseUserInfo>> =
+        apiRepository.getUserList()
 }

@@ -19,7 +19,7 @@ class KaKaoPagingSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, KaKaoImage>  {
-        val position = params.key ?: 0
+        val position = params.key ?: 1
         return runCatching {
             val kakaoResult =
                 apiService.getKaKaoSearch(query, sort = "accuracy", position, size = 10)

@@ -1,5 +1,6 @@
 package org.android.go.sopt.data.repoImpl
 
+import okhttp3.MultipartBody
 import org.android.go.sopt.data.Api.SignApiService
 import org.android.go.sopt.data.model.sign.RequestSignInDto
 import org.android.go.sopt.data.model.sign.RequestSignUpDto
@@ -19,4 +20,7 @@ class SignRepoImpl @Inject constructor(
     override suspend fun singIn(requestSignInDto: RequestSignInDto): Response<ResponseSignInDto> =
         apiService.singIn(requestSignInDto)
 
+    override suspend fun uploadImage(file: MultipartBody.Part): Response<Unit> {
+        return apiService.uploadImage(file)
+    }
 }
